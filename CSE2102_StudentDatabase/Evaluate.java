@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class Evaluate{
+public interface Evaluate{
 
 	static String getName(int id){
 		if(id == 1)
