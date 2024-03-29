@@ -59,12 +59,29 @@ public interface Evaluate{
 		return (numerator / denominator);
 	}
 
+	static int totalMark(List<Course> list_of_courses){
+		int marks = 0;
+		for(Course element : list_of_courses){
+			marks += element.totalMark;
+		}
+		return marks;
+	}
+
+	static void printMarkScheme(Course course){
+		course.showMarkScheme();
+	}
+
 	static void displayCourseEnrollment(int courseID, HashMap<Integer, Student> list_of_students){
 		int cnt = 1;
 		String courseName = getName(courseID);
+		System.out.println("Enrollment in Course - " + courseName);
 		for(Student student : list_of_students.values()){
 			if(student.checkCourseEnrollment(courseName) != -1){
-				System.out.println(cnt + ". " + student.getName());
+				if(cnt < 10)
+					System.out.print("0" + cnt + ". " + student.getName() + ", Roll: " + student.roll +" || ");
+				else
+					System.out.print(cnt + ". " + student.getName() + ", Roll: " + student.roll +" || ");
+				student.showCourseData(courseName);
 				cnt += 1;
 			}
 		}
