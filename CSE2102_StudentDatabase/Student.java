@@ -6,6 +6,7 @@ public class Student{
 	public int roll;
 	private String email;
 	public double gpa = 0;
+	public int totalStudentMark = 0;
 	private List<Course> list_of_courses = new ArrayList<>();
 
 	public Student(String name, int roll, String email){
@@ -14,7 +15,7 @@ public class Student{
 		this.email = email;
 	}
 
-	void addCourse(String courseName, int ff, int mm, int oo){
+	public void addCourse(String courseName, int ff, int mm, int oo){
 		Course new_course;
 		if(list_of_courses.size() < 3)
 			new_course = new Course(courseName, 3);
@@ -24,7 +25,7 @@ public class Student{
 		list_of_courses.add(new_course);
 	}
 
-	boolean addCourseGrade(String courseName, int ff, int mm, int oo){
+	public boolean addCourseGrade(String courseName, int ff, int mm, int oo){
 		for(Course element : this.list_of_courses){
 			if(element.courseName.equals(courseName)){
 				boolean place_holder = element.setStudentMark(ff, mm, oo);
@@ -35,7 +36,7 @@ public class Student{
 		return false;
 	}
 
-	int checkCourseEnrollment(String courseName){
+	public int checkCourseEnrollment(String courseName){
 		for(Course element : this.list_of_courses){
 			if(element.courseName.equals(courseName)){
 				return this.roll;
@@ -44,7 +45,16 @@ public class Student{
 		return -1;
 	}
 
-	double getCourseGrade(String courseName){
+	public void showCourseData(String courseName){
+		for(Course element : this.list_of_courses){
+			if(element.courseName.equals(courseName)){
+				Evaluate.printMarkScheme(element);
+				break;
+			}
+		}
+	}
+
+	public double getCourseGrade(String courseName){
 		for(Course element : this.list_of_courses){
 			if(element.courseName.equals(courseName)){
 				return element.courseGrade;
@@ -53,23 +63,33 @@ public class Student{
 		return -1;
 	}
 
-	void calculateGPA(){
-		this.gpa = Evaluate.totalGPA(this.list_of_courses);
+	public int getCourseMark(String courseName){
+		for(Course element : this.list_of_courses){
+			if(element.courseName.equals(courseName)){
+				return element.totalMark;
+			}
+		}
+		return 0;
 	}
 
-	String getName(){
+	private void calculateGPA(){
+		this.gpa = Evaluate.totalGPA(this.list_of_courses);
+		this.totalStudentMark = Evaluate.totalMark(this.list_of_courses);
+	}
+
+	public String getName(){
 		return this.name;
 	}
 
-	void displayDetails(){
+	public void displayDetails(){
 		System.out.println("Student Name: " + this.name);
 		System.out.println("Student Roll: " + this.roll);
 		System.out.println("Student Email: " + this.email);
-		System.out.println("\nCurrent GPA: " + this.gpa);
+		System.out.println("\nCGPA: " + this.gpa + " [Marks: " + this.totalStudentMark + "]");
 		System.out.println("**Courses Enrolled**");
 		for(Course element : this.list_of_courses){
 			if(element != null)
-				System.out.println(element.courseName + " (Grade: " + element.courseGrade + ")");
+				System.out.println("-" + element.courseName + " (Grade: " + element.courseGrade + ")");
 		}
 
 	}
