@@ -8,24 +8,30 @@ public class Course{
 	private int midScore;
 	private int otherScore;
 	public double courseGrade;
+	public int totalMark = 0;
 
 	public Course(String courseName, double credits){
 		this.courseName = courseName;
 		this.credits = credits;
 	}
 
-	void setMarkScheme(int ff, int mm, int oo){
+	public void setMarkScheme(int ff, int mm, int oo){
 		this.finalCeiling = ff;
 		this.midCeiling = mm;
 		this.otherCeiling = oo;
 	}
 
-	boolean setStudentMark(int ff, int mm, int oo){
+	public void showMarkScheme(){
+		System.out.println("Mark Scheme:: F: " + this.finalCeiling + ", M: " + this.midCeiling + ", A: " + this.otherCeiling);
+	}
+
+	public boolean setStudentMark(int ff, int mm, int oo){
 		if(ff > finalCeiling || mm > midCeiling || oo > otherCeiling)
 			return false;
 		this.finalScore = ff;
 		this.midScore = mm;
 		this.otherScore = oo;
+		this.totalMark = ff + mm + oo;
 		this.courseGrade = Evaluate.courseGrade(finalScore, midScore, otherScore);
 		return true;
 	}
