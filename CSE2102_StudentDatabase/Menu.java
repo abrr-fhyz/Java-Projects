@@ -1,7 +1,8 @@
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Menu{
+public abstract class Menu{
+	static int no_students = 4;
 	static void showCourses(){
 		System.out.println("1. ArtificialIntelligence");
 		System.out.println("2. Security");
@@ -11,10 +12,21 @@ public class Menu{
 		System.out.println("\n");
 	}
 
+	static void createRandomStudents(HashMap<Integer, Student> list_of_students, int n){
+		Randomiser rd = new Randomiser();
+		for(int i = no_students; i <= n + no_students; i++){
+			rd.createIdentity();
+			Student student = new Student(rd.getName(), i, rd.getEmail());
+			rd.handleCourses(student);
+			list_of_students.put(i, student);
+		}
+		no_students += n;
+	}
+
 	static void mainMenu(HashMap<Integer, Student> list_of_students){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("-----MENU-----");
-		System.out.println("1. Enter New Student\n2. Show Student Details\n3. Select Courses\n4. Enter Scores\n5. Display Course Enrollment\n6. Course Rank List\n7. Combined Rank List\n");
+		System.out.println("1. Enter New Student\n2. Show Student Details\n3. Select Courses\n4. Enter Scores\n5. Display Course Enrollment Data\n6. Course Rank List\n7. Combined Rank List\n8. Create new students, I guess?\n");
 		int cmd = sc.nextInt();
 		sc.nextLine();
 		switch(cmd){
@@ -91,6 +103,12 @@ public class Menu{
 				break;
 			case 7:
 				Rank.totalRankList(list_of_students);
+				break;
+			case 8:
+				System.out.println("How many students do you want to integrate?");
+				int n = sc.nextInt();
+				createRandomStudents(list_of_students, n);
+				System.out.println("New Students added!!");
 				break;
 			default:
 				System.out.println("UNRECOGNISED");
