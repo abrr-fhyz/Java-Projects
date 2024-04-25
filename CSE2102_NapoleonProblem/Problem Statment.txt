@@ -1,0 +1,15 @@
+Problem: War of the Sixth Coalition
+
+Imagine its 1814, you’re Napoleon Bonaparte. You’ve just returned from the island of Elba, and you want some sweet vengeance over the European powers. Due to years of war, French manpower has been depleted, and now you have a smaller army than your enemies. But you don’t care, because you’re the greatest Military Commander in history.
+You’ll be facing off against the Russian, Germanic and English Armies as they head for Paris. Each of their armies will of size 50000 ≤ N ≤ 200000. But because of logistics (and your ruthless military stratagem), their armies will be divided into smaller sub-armies. All of these smaller armies will be of size 0 < n ≤ 35000. The Imperial French Army will be of size 25000 <M ≤40000.
+As Napoleon, you will need to fight off all the enemy armies, and defeat all of them to force the coalition forces to retreat. Assume that you will win every battle you fight where your oppositions’ armies are ≤1.5 times yours. If the opposing army is smaller than yours, you will lose  ( n/M)×500 soldiers. If it is greater than or equal to yours, you will lose ( n/M)×1500 soldiers. If you are up against an army that you can’t beat, you will be defeated and the war will be over.
+You have to find out which armies you should attack first to ensure that you win the war. As Napoleon is a great general, he will always fight using the most efficient algorithm.
+Can you win the War of the Sixth Coalition?
+
+INPUT
+An integer M which is the strength of the French Army, followed by 3 integers N, the strengths of the Russian, Germanic and English Armies respectively.
+
+OUTPUT
+If Napoleon can win the war, output “Viva la France!”. Then in the next k lines, output all the battles that need to be fought to win the war, in the form “C n vs M”,
+Where: C, an Upper-Case English character that represents the allegiance of the enemy army (G for Germany, R for Russia and E for England). Space. n, an integer which represents the strength of the enemy army. Space. The String, “vs”. Another Space. M, an integer which represents the strength of the French Army at the time of the battle.
+If it is impossible for Napoleon to win the war, output “Decisive Coalition Victory.” Then in the next k lines, output all the battles that would be fought before the inevitable defeat, in the previously mentioned format.
