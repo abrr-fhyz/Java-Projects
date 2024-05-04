@@ -12,11 +12,11 @@ class Task{
 	}
 
 	void startStatus(){
-		System.out.println("||taskID:" + taskID + "\t is being processed\t\t||");
+		System.out.println("|| taskID:" + taskID + "\t is being processed\t\t||");
 	}
 
 	void finishStatus(){
-		System.out.println("||taskID:" + taskID + "\t successfully executed\t\t||");
+		System.out.println("|| taskID:" + taskID + "\t successfully executed\t\t||");
 	}
 
 	int getName(){
