@@ -23,7 +23,7 @@ class Network{
 					if(server.isAvailable() && server.isValidTask(task)){
 						server.setTask(task);
 						serverFound = true;
-						System.out.println("||Server: " + server.getServerName() + "\t executing taskID:" + task.getName() + "\t\t||");
+						System.out.println("|| Server: " + server.getServerName() + "\t executing taskID:" + task.getName() + "\t\t||");
 						break;
 					}
 				}
