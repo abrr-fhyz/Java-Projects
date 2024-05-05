@@ -34,6 +34,7 @@ class Server extends Thread{
 			task.startStatus();
 			Thread.sleep(taskBandwith);
 			task.finishStatus();
+			task.isExecuted();
 		} catch (InterruptedException e){}
 		this.isProcessing = false;
 	}
