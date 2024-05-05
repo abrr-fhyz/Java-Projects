@@ -11,22 +11,21 @@ class Network{
 		}
 	}
 
-	void findValidServer(Task task){
-		boolean serverFound = false;
-		if(task.getBandwith() > maxBandwith){
-			System.out.println("|| No Server available: EXCEPTION:- MaxBandWidth exceeded");
-			return;
-		}
-		while(!serverFound){
-			for(Server server : listOfServers){
-				if(server != null){
-					if(server.isAvailable() && server.isValidTask(task)){
-						server.setTask(task);
-						serverFound = true;
-						System.out.println("|| Server: " + server.getServerName() + "\t executing taskID:" + task.getName() + "\t\t||");
-						break;
-					}
+	void findServers(Task[] listOfTasks, int noOfTasks){
+		boolean allTasksCompleted = false;
+		while(!allTasksCompleted){
+			int tasksCompleted = 0;
+			for(Task task : listOfTasks){
+				if(task != null && !task.executionStatus()){
+					findServerForTask(task);
 				}
+				if(task != null && task.executionStatus()){
+					tasksCompleted += 1;
+				}
+			}
+			if(tasksCompleted == noOfTasks){
+				allTasksCompleted = true;
+				break;
 			}
 		}
 	}
@@ -57,6 +56,24 @@ class Network{
 			}
 		}
 		shutdownNetwork();
+	}
+
+	private void findServerForTask(Task task){
+		if(task.getBandwith() > maxBandwith){
+			System.out.println("|| EXCEPTION: maxBandwith EXCEEDED for \ttaskID:" + task.getName());
+			task.isExecuted();
+			return;
+		}
+
+		for(Server server : listOfServers){
+			if(server != null){
+				if(server.isAvailable() && server.isValidTask(task)){
+					server.setTask(task);
+					System.out.println("|| Server: " + server.getServerName() + "\t executing \ttaskID:" + task.getName() + "\t||");
+					return;
+				}
+			}
+		}
 	}
 
 	private void shutdownNetwork(){
