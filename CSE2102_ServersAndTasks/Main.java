@@ -22,14 +22,17 @@ public class Main{
 			Server newServer = formatText(data);
 			network.addServer(newServer);
 		}
-		network.initializeNetwork();
+
 		int noOfTasks = cin.nextInt();
+		Task[] listOfTasks = new Task[noOfTasks];
 		for(int idx = 0; idx < noOfTasks; idx++){
 			int taskID = cin.nextInt();
 			int taskBandwith = cin.nextInt();
-			Task task = new Task(taskID, taskBandwith);
-			network.findValidServer(task);
+			listOfTasks[idx] = new Task(taskID, taskBandwith);
 		}
+
+		network.initializeNetwork();
+		network.findServers(listOfTasks, noOfTasks);
 		network.waitForCompletion();
 	} 
 }
