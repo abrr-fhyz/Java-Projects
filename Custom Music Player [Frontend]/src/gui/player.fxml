@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane style="-fx-background-color: black" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MusicPlayerController">
+    <left>
+        <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+            <content>
+                <VBox style="-fx-padding: 0 2; -fx-spacing: 1;">
+               <VBox alignment="CENTER" prefHeight="99.0" prefWidth="226.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-border-width: 4; -fx-border-radius: 5; -fx-spacing: 3;">
+                  <children>
+                     <Label alignment="CENTER" prefHeight="21.0" prefWidth="158.0" text="User [SERVER]" textFill="WHITE">
+                        <font>
+                           <Font name="Agency FB Bold" size="18.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="userNameField" alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="174.0" style="-fx-background-color: #636e65; -fx-padding: 3;" text="NAME" textAlignment="CENTER" textFill="#fac4ff">
+                        <font>
+                           <Font name="Agency FB Bold" size="17.0" />
+                        </font>
+                     </Label>
+                     <Button mnemonicParsing="false" onAction="#changeRole" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: lightgreen; -fx-text-fill: black; -fx-font-weight: bold; -fx-border-color: white;" text="Switch Roles" />
+                  </children>
+               </VBox>
+                    <ListView fx:id="fileList" prefHeight="306.0" prefWidth="226.0" style="-fx-font-family: 'Agency FB'; -fx-font-weight: bold; -fx-font-size: 14px; -fx-border-radius: 5; -fx-border-width: 3; -fx-border-color: black;" />
+                </VBox>
+            </content>
+        </ScrollPane>
+    </left>
+    <center>
+        <VBox alignment="CENTER" prefHeight="410.0" prefWidth="442.0" spacing="5">
+            <Label fx:id="songTitle" alignment="CENTER" contentDisplay="CENTER" style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-family: 'Agency FB';" text="Now Playing: ">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Label>
+            <ImageView fx:id="defaultImage" fitHeight="250" fitWidth="250" />
+            <Slider fx:id="progressSlider" max="100" min="0" style="-fx-control-inner-background: lightgreen" value="0" />
+            <HBox alignment="CENTER_RIGHT">
+                <Label fx:id="songDuration" style="-fx-font-style: italic; -fx-text-fill: white; -fx-font-family: 'Agency FB';" text="0:00/0:00  ">
+                    <font>
+                        <Font name="Freesans" size="14.0" />
+                    </font>
+                </Label>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="385.0" style="-fx-padding: 15;">
+                <Button onAction="#playPrevious">
+                    <graphic>
+                        <ImageView fx:id="previousButton" fitHeight="24" fitWidth="24" />
+                    </graphic>
+                </Button>
+                <Button onAction="#toggleState">
+                    <graphic>
+                        <ImageView fx:id="playButton" fitHeight="24" fitWidth="24" />
+                    </graphic>
+                </Button>
+                <Button onAction="#restartMusic">
+                    <graphic>
+                        <ImageView fx:id="replayButton" fitHeight="24" fitWidth="24" />
+                    </graphic>
+                </Button>
+                <Button onAction="#playNext">
+                    <graphic>
+                        <ImageView fx:id="nextButton" fitHeight="24" fitWidth="24" />
+                    </graphic>
+                </Button>
+                <HBox alignment="CENTER" style="-fx-background-color: black; -fx-padding: 0 10;">
+                    <ImageView fx:id="speakerImage" fitHeight="24" fitWidth="24" />
+                    <Slider fx:id="volumeSlider" max="1" min="0" style="-fx-control-inner-background: green" value="0" />
+                    <Label fx:id="volumeLevel" style="-fx-font-style: italic; -fx-text-fill: white;" text=" 100">
+                        <font>
+                            <Font name="Freesans" size="13.0" />
+                        </font>
+                    </Label>
+                </HBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
